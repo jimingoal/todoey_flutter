@@ -4,9 +4,11 @@ class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.lightBlue,
-        body: SafeArea(
-          child: Padding(
+      backgroundColor: Colors.lightBlue,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
             padding: const EdgeInsets.all(30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,6 +42,20 @@ class TasksScreen extends StatelessWidget {
               ],
             ),
           ),
-        ));
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20.0),
+                  topRight: Radius.circular(20.0),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
