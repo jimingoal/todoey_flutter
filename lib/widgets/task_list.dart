@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:todoeyflutter/models/task.dart';
 import 'package:todoeyflutter/widgets/task_tile.dart';
 
+import 'task_tile.dart';
+
 class TasksList extends StatefulWidget {
   @override
   _TasksListState createState() => _TasksListState();
@@ -20,14 +22,21 @@ class _TasksListState extends State<TasksList> {
       Task(
         name: "buy a beer",
       ),
+      Task(
+        name: "buy a beer2",
+      ),
+      Task(
+        name: "buy a beer3",
+      ),
     ];
 
-    return ListView(
-      children: [
-        TaskTile(tasks[0].name, tasks[0].isDone),
-        TaskTile(tasks[1].name, tasks[1].isDone),
-        TaskTile(tasks[2].name, tasks[2].isDone),
-      ],
+    return ListView.builder(
+      itemBuilder: (context, index) => TaskTile(
+        taskTitle: tasks[index].name,
+        isChecked: tasks[index].isDone,
+        toggleCheckboxState: tasks[index].toggleDone,
+      ),
+      itemCount: tasks.length,
     );
   }
 }
