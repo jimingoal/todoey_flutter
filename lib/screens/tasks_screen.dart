@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:todoeyflutter/models/task.dart';
-import 'package:todoeyflutter/models/tasks.dart';
+import 'package:provider/provider.dart';
+import 'package:todoeyflutter/models/task_data.dart';
 import 'package:todoeyflutter/screens/add_task_screen.dart';
 import 'package:todoeyflutter/widgets/task_list.dart';
 
 class TasksScreen extends StatefulWidget {
-  // final Tasks tasks = Tasks();
   @override
   _TasksScreenState createState() => _TasksScreenState();
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: "buy a milk"),
-    Task(name: "buy a iceCream"),
-    Task(name: "buy a beer"),
-  ];
-
-  void addTaskCallback(newTaskTitle) {
-    setState(() {
-      tasks.add(Task(name: newTaskTitle));
-    });
-  }
+  // void addTaskCallback(newTaskTitle) {
+  //   setState(() {
+  //     tasks.add(Task(name: newTaskTitle));
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +49,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   height: 10,
                 ),
                 Text(
-                  '${tasks.length}',
+                  '${context.watch<TaskData>().tasksCount}',
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -74,7 +67,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(tasks),
+              child: TasksList(),
             ),
           ),
         ],
@@ -83,7 +76,7 @@ class _TasksScreenState extends State<TasksScreen> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) => AddTaskScreen(addTaskCallback),
+            builder: (context) => AddTaskScreen(),
           );
         },
         child: Icon(Icons.add),

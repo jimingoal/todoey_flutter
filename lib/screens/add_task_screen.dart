@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todoeyflutter/models/task.dart';
-import 'package:todoeyflutter/models/tasks.dart';
-import 'package:todoeyflutter/screens/tasks_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:todoeyflutter/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  final Function addTaskCallback;
-
-  AddTaskScreen(this.addTaskCallback);
-
   final TextEditingController textEditingController = TextEditingController();
 
   @override
@@ -41,7 +36,7 @@ class AddTaskScreen extends StatelessWidget {
             ),
             FlatButton(
               onPressed: () {
-                addTaskCallback(textEditingController.text);
+                context.read<TaskData>().addTask(textEditingController.text);
                 Navigator.pop(context);
               },
               child: Text(
