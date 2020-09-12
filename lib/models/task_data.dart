@@ -8,7 +8,6 @@ class TaskData extends ChangeNotifier {
     Task(name: "buy a milk"),
     Task(name: "buy a iceCream"),
     Task(name: "buy a beer"),
-    Task(name: "buy a beer"),
   ];
 
   UnmodifiableListView<Task> get tasks {
@@ -24,20 +23,17 @@ class TaskData extends ChangeNotifier {
 
     for (var task in _tasks) {
       print(task.name);
-
       notifyListeners();
     }
   }
 
   void updateTask(Task task) {
     task.toggleDone();
-
     notifyListeners();
   }
 
-  void taskDelete(index) {
-    _tasks.removeAt(index);
-
+  void deleteTask(Task task) {
+    _tasks.remove(task);
     notifyListeners();
   }
 }
